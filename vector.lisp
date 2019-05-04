@@ -78,16 +78,16 @@
 
 (defun vx (v)
   (declare (type vect v))
-  (the number (v[] v 0)))
+  (the number (v[] 0 v)))
 
 (defun vy (v)
   (declare (type vect v))
-  (the number (v[] v 1)))
+  (the number (v[] 1 v)))
 
 (defun vz (v)
   (declare (type vect v))
-  (the number (v[] v 2)))
+  (the number (v[] 2 v)))
 
 (defun vt (v)
   (declare (type vect v))
-  (the number (v[] v 3)))
+  (the number (v[] 3 v)))
