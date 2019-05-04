@@ -91,3 +91,12 @@
 (defun vt (v)
   (declare (type vect v))
   (the number (v[] 3 v)))
+
+
+(defmacro v-bind (vars v &body body)
+  (let ((vs (gensym "V")))
+    `(let* ((,vs ,v)
+            ,@(loop :for var :in vars
+                    :for i :from 0
+                    :collect `(,var (aref ,vs ,i))))
+       ,@body)))

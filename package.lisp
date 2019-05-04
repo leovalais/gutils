@@ -23,6 +23,7 @@
     vy
     vz
     vt
+    v-bind
 
     ;; color
     rgb
