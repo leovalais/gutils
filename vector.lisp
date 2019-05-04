@@ -1,6 +1,6 @@
 (in-package :gutils)
 
-(deftype vect-dim () '(integer (0) *))
+(deftype vect-dim () '(integer 0 *))
 
 (deftype vect (&optional (dim '*) (type 'number))
   `(array ,type (,dim)))
