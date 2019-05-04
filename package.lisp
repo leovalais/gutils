@@ -9,6 +9,7 @@
     V4
     v
     list->v
+    scalar->v
     v0
     v[]
     v-dim
@@ -19,6 +20,7 @@
     v^
     v=
     v-norm
+    v-unit
     vx
     vy
     vz

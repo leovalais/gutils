@@ -22,6 +22,10 @@
   (let ((v (apply #'v l)))
     (the vect v)))
 
+(defun scalar->v (x &optional (n-dim 3))
+  (the vect (apply #'v
+                   (loop :repeat n-dim :collect x))))
+
 (defun v0 (d)
   (declare (type vect-dim d))
   (the vect
@@ -74,7 +78,14 @@
 
 (defun v-norm (v)
   (declare (type vect v))
-  (sqrt (reduce #'* v)))
+  (the real (sqrt (reduce (lambda (sum x)
+                            (+ sum (* x x)))
+                          v :initial-value 0.0))))
+
+(defun v-unit (v)
+  (declare (type vect v))
+  (the vect (v* v (scalar->v (/ 1.0 (v-norm v))))))
+
 
 (defun vx (v)
   (declare (type vect v))
