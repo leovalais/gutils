@@ -13,5 +13,6 @@
   :serial t
   :components ((:file "package")
                (:file "vector")
+               (:file "matrix")
                (:file "color")
                (:file "image")))

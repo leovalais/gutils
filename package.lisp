@@ -27,6 +27,21 @@
     vt
     v-bind
 
+    ;; matrix
+    matrix
+    m
+    mat
+    v->m
+    m->v
+    m-dim
+    m-rows
+    m-cols
+    m-iter
+    m-map
+    m+
+    m-
+    m*
+
     ;; color
     rgb
     rgb255
