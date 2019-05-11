@@ -76,6 +76,10 @@
   (assert-same-dim u v)
   (the boolean (every #'= v u)))
 
+(defun v-zerop (v)
+  (declare (type vect v))
+  (the boolean (every #'zerop v)))
+
 (defun v-norm (v)
   (declare (type vect v))
   (the real (sqrt (reduce (lambda (sum x)
@@ -84,7 +88,8 @@
 
 (defun v-unit (v)
   (declare (type vect v))
-  (the vect (v* v (scalar->v (/ 1.0 (v-norm v))))))
+  (the vect (v* v (scalar->v (/ 1.0 (v-norm v))
+                             (v-dim v)))))
 
 
 (defun vx (v)
