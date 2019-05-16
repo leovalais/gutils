@@ -8,7 +8,7 @@
   :licence "MIT"
   :description "Utilities for graphics programming."
 
-  :depends-on (:cl-netpbm)
+  :depends-on (:cl-netpbm :array-operations)
 
   :serial t
   :components ((:file "package")

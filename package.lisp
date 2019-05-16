@@ -37,6 +37,9 @@
     m-dim
     m-rows
     m-cols
+    m[]
+    m-row[]
+    m-col[]
     m-iter
     m-map
     m+

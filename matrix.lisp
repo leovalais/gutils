@@ -42,6 +42,69 @@
 (defun m-cols (m)
   (second (m-dim m)))
 
+
+(defun m[] (row col m)
+  (declare (type unsigned-byte row col)
+           (type matrix m))
+  (the number (aref m row col)))
+
+(defun (setf m[]) (n row col m)
+  (declare (type number n)
+           (type matrix m)
+           (type unsigned-byte row col))
+  (setf (aref m row col)
+        n))
+
+
+(defun m-row[] (row m)
+  (declare (type unsigned-byte row)
+           (type matrix m))
+  (let ((v (aops:generate (lambda (i)
+                            (aref m row (car i)))
+                          (m-cols m)
+                          :subscripts)))
+    (the vect v)))
+;; TODO bench more efficient
+;; (let* ((nc (m-cols m))
+;;        (v (v0 nc)))
+;;   (dotimes (i nc)
+;;     (setf (aref v i)
+;;           (aref m row i)))
+;;   (the vect v)))
+
+(defun (setf m-row[]) (v row m)
+  (declare (type vect v)
+           (type unsigned-byte row)
+           (type matrix m))
+  (assert (= (v-dim v)
+             (m-cols m))
+          nil "wrong dimensions: given row ~S cannot fit inside a ~S matrix ~S" v (m-dim m) m)
+  (aops:each-index i
+    (setf (aref m row i)
+          (aref v i))))
+
+(defun m-col[] (col m)
+  (declare (type unsigned-byte col)
+           (type matrix m))
+  (let* ((nr (m-rows m))
+         (v (v0 nr)))
+    (dotimes (i nr)
+      (setf (aref v i)
+            (aref m i col)))
+    (the vect v)))
+
+(defun (setf m-col[]) (v col m)
+  (declare (type vect v)
+           (type unsigned-byte col)
+           (type matrix m))
+  (assert (= (v-dim v)
+             (m-rows m))
+          nil "wrong dimensions: given column ~S cannot fit inside a ~S matrix ~S" v (m-dim m) m)
+  (aops:each-index i
+    (setf (aref m i col)
+          (aref v i))))
+
+
 (defun m-iter (proc &rest ms)
   (assert ms)
   (assert (apply #'= (mapcar #'m-dim ms)))
