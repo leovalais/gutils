@@ -81,7 +81,13 @@
   (assert-same-dim u v)
   (the boolean (every (lambda (x y)
                         (< (- epsilon) (- x y) epsilon))
-                      v u)))
+                      u v)))
+
+(defun v< (u v)
+  (declare (type vect u v))
+  (assert-same-dim u v)
+  (the boolean
+       (every #'< u v)))
 
 (defun v-zerop (v)
   (declare (type vect v))
