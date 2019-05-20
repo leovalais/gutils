@@ -20,7 +20,7 @@
     v^
     v=
     v~
-    v<
+    v<=
     v-zerop
     v-norm
     v-unit

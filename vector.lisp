@@ -83,11 +83,24 @@
                         (< (- epsilon) (- x y) epsilon))
                       u v)))
 
-(defun v< (u v)
+(defun v<= (u v)
   (declare (type vect u v))
   (assert-same-dim u v)
-  (the boolean
-       (every #'< u v)))
+  (loop :for x :across u
+        :for y :across v
+        :always (<= x y)))
+;;; another (cascading) implementation
+;; (loop :with d = (v-dim u)
+;;       :for x :across u
+;;       :for y :across v
+;;       :for i :from 1
+;;       :for last-dim? := (= i d)
+;;       :when (> x y)
+;;         :do (return nil)
+;;       :when (and (= x y)
+;;                  last-dim?)
+;;         :do (return nil)
+;;       :finally (return t))
 
 (defun v-zerop (v)
   (declare (type vect v))
